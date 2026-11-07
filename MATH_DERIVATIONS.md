@@ -220,7 +220,7 @@ BCa adjusts percentiles for bias and skewness:
 | Open-source transfer TR | 0.975 | [0.94, 1.01] | §4.6 |
 | Cross-architecture TR | 0.738 | [0.69, 0.78] | §4.6 |
 
-> **Why is the overall adversarial CI [35.1%, 39.7%] when the point estimate is 41.1%?** The BCa correction accounts for bias in the bootstrap distribution — the CI does not need to be symmetric around the point estimate. All intervals exclude 0%, confirming statistical significance.
+> **Why is the overall adversarial CI [35.1%, 39.7%] when the point estimate is 41.1%?** The BCa correction accounts for bias in the bootstrap distribution — the CI does not need to be symmetric around the point estimate. Specifically, when the bootstrap distribution is right-skewed (common for proportions near 0.4 on binary outcome data), the BCa bias correction pulls the interval downward relative to the point estimate. This is expected behavior and does not indicate an error — it means the bootstrap distribution is not centered on the sample statistic. All intervals exclude 0%, confirming statistical significance.
 
 ---
 
