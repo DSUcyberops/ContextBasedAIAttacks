@@ -10,7 +10,7 @@
 
 ## Purpose
 
-This repository contains all experimental data, scripts, and statistical verification materials supporting the dissertation. Dr. Ham and the committee can use it to independently verify every statistic reported in Chapter 4 without re-running the original experiments.
+This repository contains all experimental data, scripts, and statistical verification materials supporting the dissertation.it can be used to independently verify every statistic reported in Chapter 4 without re-running the original experiments.
 
 ---
 
