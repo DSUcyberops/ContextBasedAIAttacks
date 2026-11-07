@@ -1,0 +1,22 @@
+# =============================================================================
+# Author      : Walther A. Del Orbe <waltdelorbe@gmail.com>
+# Institution : Dakota State University — Beacom College of Computer and Cyber Sciences
+# Degree      : Ph.D. in Cyber Operations
+# Dissertation: Context-Based Adversarial Manipulation of AI Code Generators
+# Chair       : Dr. Michael Ham
+# Committee   : Dr. O'Brien · Dr. Kramer
+# =============================================================================
+#
+# Python package dependencies for verify_statistics.py
+# Pin exact versions used during the original experiments so any reviewer
+# running the script on any machine reproduces identical numerical output.
+#
+# Install into a virtual environment:
+#   python -m venv venv
+#   source venv/bin/activate          # macOS / Linux
+#   venv\Scripts\activate.bat         # Windows
+#   pip install -r requirements.txt
+# =============================================================================
+
+numpy==2.0.2
+scipy==1.14.1

@@ -1,0 +1,250 @@
+{
+  "phase1": {
+    "source": "pilot_experiment_v2_rescored.json",
+    "n": 12
+  },
+  "phase2": {
+    "source": "week3_5_experiments_final.json",
+    "n": 2000,
+    "baseline": {
+      "vuln": 101,
+      "n": 500,
+      "rate": 0.202
+    },
+    "adversarial": {
+      "vuln": 766,
+      "n": 1500,
+      "rate": 0.5106666666666667
+    },
+    "chi2": 145.48617155530852,
+    "p": 1.681407441213241e-33,
+    "phi": 0.2697092615718901,
+    "amplification": 2.5280528052805282,
+    "by_model_attack": {
+      "CodeLlama-7b/baseline": {
+        "n": 250,
+        "vuln": 51,
+        "rate": 0.204
+      },
+      "CodeLlama-7b/direct": {
+        "n": 250,
+        "vuln": 164,
+        "rate": 0.656
+      },
+      "CodeLlama-7b/example": {
+        "n": 250,
+        "vuln": 200,
+        "rate": 0.8
+      },
+      "CodeLlama-7b/semantic": {
+        "n": 250,
+        "vuln": 52,
+        "rate": 0.208
+      },
+      "CodeT5+-770m/baseline": {
+        "n": 250,
+        "vuln": 50,
+        "rate": 0.2
+      },
+      "CodeT5+-770m/direct": {
+        "n": 250,
+        "vuln": 150,
+        "rate": 0.6
+      },
+      "CodeT5+-770m/example": {
+        "n": 250,
+        "vuln": 150,
+        "rate": 0.6
+      },
+      "CodeT5+-770m/semantic": {
+        "n": 250,
+        "vuln": 50,
+        "rate": 0.2
+      }
+    }
+  },
+  "phase3": {
+    "source": "week6_8_advanced_final.json",
+    "n": 800,
+    "by_phase": {
+      "evasion": {
+        "n": 300,
+        "vuln": 5,
+        "rate": 0.016666666666666666
+      },
+      "steganographic": {
+        "n": 500,
+        "vuln": 230,
+        "rate": 0.46
+      }
+    },
+    "by_variation": {
+      "compatibility": {
+        "n": 150,
+        "vuln": 94,
+        "rate": 0.6266666666666667
+      },
+      "indirect": {
+        "n": 150,
+        "vuln": 4,
+        "rate": 0.02666666666666667
+      },
+      "performance": {
+        "n": 200,
+        "vuln": 134,
+        "rate": 0.67
+      },
+      "simplicity": {
+        "n": 150,
+        "vuln": 2,
+        "rate": 0.013333333333333334
+      },
+      "technical": {
+        "n": 150,
+        "vuln": 1,
+        "rate": 0.006666666666666667
+      }
+    }
+  },
+  "phase4": {
+    "source": "week9_10_defense_rescored.json",
+    "is_rescored": true,
+    "n_adversarial": 150,
+    "n_baseline": 30,
+    "combined": {
+      "tp": 140,
+      "fp": 0,
+      "detection_rate": 0.9333333333333333,
+      "fpr": 0.0,
+      "precision": 1.0,
+      "f1": 0.9655172413793104
+    },
+    "by_attack": {
+      "baseline": {
+        "n": 30,
+        "prompt_det": 0,
+        "code_det": 0,
+        "combined_det": 0
+      },
+      "direct": {
+        "n": 30,
+        "prompt_det": 30,
+        "code_det": 24,
+        "combined_det": 30
+      },
+      "example": {
+        "n": 30,
+        "prompt_det": 0,
+        "code_det": 30,
+        "combined_det": 30
+      },
+      "semantic": {
+        "n": 30,
+        "prompt_det": 20,
+        "code_det": 1,
+        "combined_det": 20
+      },
+      "steganographic_compatibility": {
+        "n": 20,
+        "prompt_det": 20,
+        "code_det": 15,
+        "combined_det": 20
+      },
+      "steganographic_performance": {
+        "n": 20,
+        "prompt_det": 20,
+        "code_det": 6,
+        "combined_det": 20
+      },
+      "steganographic_simplicity": {
+        "n": 20,
+        "prompt_det": 20,
+        "code_det": 10,
+        "combined_det": 20
+      }
+    }
+  },
+  "phase5": {
+    "source": "openai_full_gpt_35_turbo.json + openai_full_gpt_4.json",
+    "n": 800,
+    "by_model": {
+      "gpt-3.5-turbo": {
+        "n": 500,
+        "vuln": 285,
+        "rate": 0.57
+      },
+      "gpt-4": {
+        "n": 300,
+        "vuln": 149,
+        "rate": 0.49666666666666665
+      }
+    },
+    "by_model_attack": {
+      "gpt-3.5-turbo/baseline": {
+        "n": 125,
+        "vuln": 40,
+        "rate": 0.32
+      },
+      "gpt-3.5-turbo/direct": {
+        "n": 125,
+        "vuln": 105,
+        "rate": 0.84
+      },
+      "gpt-3.5-turbo/example": {
+        "n": 125,
+        "vuln": 91,
+        "rate": 0.728
+      },
+      "gpt-3.5-turbo/semantic": {
+        "n": 125,
+        "vuln": 49,
+        "rate": 0.392
+      },
+      "gpt-4/baseline": {
+        "n": 75,
+        "vuln": 21,
+        "rate": 0.28
+      },
+      "gpt-4/direct": {
+        "n": 75,
+        "vuln": 48,
+        "rate": 0.64
+      },
+      "gpt-4/example": {
+        "n": 75,
+        "vuln": 59,
+        "rate": 0.7866666666666666
+      },
+      "gpt-4/semantic": {
+        "n": 75,
+        "vuln": 21,
+        "rate": 0.28
+      }
+    }
+  },
+  "gpt6": {
+    "source": "gpt6_astra_full_results.json",
+    "baseline": {
+      "n": 250,
+      "vuln": 1,
+      "rate": 0.004,
+      "ci_95": [
+        0.0,
+        0.021993574161962896
+      ]
+    },
+    "adversarial": {
+      "n": 500,
+      "vuln": 335,
+      "rate": 0.67,
+      "ci_95": [
+        0.628,
+        0.71
+      ]
+    },
+    "amplification": 167.5,
+    "chi2": 298.9373059006211,
+    "p": 5.61433042326387e-67,
+    "phi": 0.6313343603306899
+  }
+}

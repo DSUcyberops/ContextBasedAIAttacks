@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dissertation Statistics Verification — Del Orbe 2026</title>
+<style>
+  :root {
+    --bg: #0d1117;
+    --bg2: #161b22;
+    --bg3: #1f2937;
+    --border: #30363d;
+    --text: #e6edf3;
+    --text2: #8b949e;
+    --green: #3fb950;
+    --yellow: #d29922;
+    --blue: #58a6ff;
+    --purple: #bc8cff;
+    --orange: #f0883e;
+    --red: #f85149;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--bg); color: var(--text); font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif; font-size: 15px; line-height: 1.6; }
+
+  .page-header { background: linear-gradient(135deg, #1a237e 0%, #0d47a1 50%, #01579b 100%); padding: 40px 32px; border-bottom: 2px solid var(--blue); }
+  .page-header h1 { font-size: 26px; font-weight: 700; color: #fff; margin-bottom: 8px; }
+  .page-header .subtitle { color: #90caf9; font-size: 14px; margin-bottom: 20px; }
+  .meta-row { display: flex; flex-wrap: wrap; gap: 24px; }
+  .meta-item { display: flex; flex-direction: column; gap: 2px; }
+  .meta-label { color: #64b5f6; font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; font-weight: 600; }
+  .meta-value { color: #fff; font-size: 13px; }
+
+  .container { max-width: 1200px; margin: 0 auto; padding: 24px 32px; }
+
+  .notice { background: #1a3a1a; border: 1px solid var(--green); border-left: 4px solid var(--green); padding: 14px 20px; margin-bottom: 20px; border-radius: 6px; }
+  .notice.yellow { background: #2d2000; border-color: var(--yellow); border-left-color: var(--yellow); }
+  .notice.orange { background: #2d1800; border-color: var(--orange); border-left-color: var(--orange); }
+  .notice strong { color: var(--green); }
+  .notice.yellow strong { color: var(--yellow); }
+  .notice.orange strong { color: var(--orange); }
+  .notice p { margin-top: 6px; font-size: 13px; color: var(--text2); }
+
+  .toc { background: var(--bg2); border: 1px solid var(--border); border-radius: 8px; padding: 20px 24px; margin-bottom: 32px; }
+  .toc h2 { color: var(--blue); font-size: 14px; font-weight: 600; margin-bottom: 12px; text-transform: uppercase; letter-spacing: 0.06em; }
+  .toc ol { padding-left: 20px; }
+  .toc li { margin-bottom: 6px; }
+  .toc a { color: var(--blue); text-decoration: none; font-size: 13px; }
+  .toc a:hover { text-decoration: underline; }
+
+  .kpi-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px; margin-bottom: 32px; }
+  .kpi { background: var(--bg2); border: 1px solid var(--border); border-radius: 8px; padding: 16px; text-align: center; }
+  .kpi .num { font-size: 26px; font-weight: 700; color: var(--blue); font-family: 'Courier New', monospace; }
+  .kpi .label { font-size: 11px; color: var(--text2); text-transform: uppercase; letter-spacing: 0.05em; margin-top: 4px; }
+
+  .section { margin-bottom: 48px; }
+  .sec-head { display: flex; align-items: center; gap: 12px; padding: 14px 20px; background: var(--bg2); border: 1px solid var(--border); border-left: 4px solid var(--blue); border-radius: 8px 8px 0 0; }
+  .sec-head.supp { border-left-color: var(--orange); }
+  .sec-num { background: var(--blue); color: var(--bg); font-size: 11px; font-weight: 700; padding: 3px 8px; border-radius: 4px; white-space: nowrap; }
+  .sec-head.supp .sec-num { background: var(--orange); }
+  .sec-head h2 { font-size: 16px; font-weight: 600; }
+  .rq { margin-left: auto; background: var(--bg3); border: 1px solid var(--border); color: var(--text2); font-size: 11px; padding: 3px 8px; border-radius: 4px; white-space: nowrap; }
+  .sec-body { background: var(--bg2); border: 1px solid var(--border); border-top: none; border-radius: 0 0 8px 8px; padding: 24px; }
+
+  table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 13px; }
+  th { background: var(--bg3); color: var(--text2); font-weight: 600; padding: 10px 12px; text-align: left; border-bottom: 2px solid var(--border); font-size: 11px; text-transform: uppercase; letter-spacing: 0.05em; }
+  td { padding: 10px 12px; border-bottom: 1px solid var(--border); vertical-align: top; }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: rgba(88,166,255,0.04); }
+  .total-row td { background: var(--bg3); font-weight: 600; border-top: 2px solid var(--border); }
+  .v { color: var(--blue); font-weight: 600; font-family: 'Courier New', monospace; }
+  .src { color: var(--text2); font-size: 11px; }
+  .ok { color: var(--green); font-weight: 700; }
+  .note { color: var(--yellow); font-weight: 600; }
+
+  .math { background: var(--bg); border: 1px solid var(--border); border-radius: 6px; padding: 14px 18px; margin: 12px 0; font-family: 'Courier New', monospace; font-size: 12.5px; line-height: 1.9; white-space: pre; overflow-x: auto; }
+  .box { background: var(--bg3); border: 1px solid var(--border); border-left: 3px solid var(--purple); border-radius: 6px; padding: 14px 18px; margin: 14px 0; }
+  .box h4 { color: var(--purple); font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 10px; }
+
+  .checklist { list-style: none; padding: 0; }
+  .checklist li { display: flex; align-items: flex-start; gap: 10px; padding: 8px 12px; border-bottom: 1px solid var(--border); font-size: 13px; }
+  .checklist li:last-child { border-bottom: none; }
+  .ci { font-size: 16px; flex-shrink: 0; }
+  .cd { flex: 1; color: var(--text2); font-size: 12px; margin-top: 2px; }
+
+  .fn { font-size: 11px; color: var(--text2); font-style: italic; margin-top: 8px; padding-left: 12px; border-left: 2px solid var(--border); }
+  h3.sub { color: var(--blue); font-size: 14px; font-weight: 600; margin: 20px 0 10px; }
+
+  .footer { text-align: center; padding: 32px; color: var(--text2); font-size: 12px; border-top: 1px solid var(--border); margin-top: 48px; }
+</style>
+</head>
+<body>
+
+<div class="page-header">
+  <h1>Dissertation Statistics Verification</h1>
+  <div class="subtitle">Context-Based Adversarial Manipulation of AI Code Generators &mdash; Ph.D. Dissertation, Dakota State University, Beacom College of Computer and Cyber Sciences</div>
+  <div class="meta-row">
+    <div class="meta-item"><span class="meta-label">Author</span><span class="meta-value">Walther A. Del Orbe &middot; waltdelorbe@gmail.com</span></div>
+    <div class="meta-item"><span class="meta-label">Chair</span><span class="meta-value">Dr. Michael Ham</span></div>
+    <div class="meta-item"><span class="meta-label">Committee</span><span class="meta-value">Dr. O&apos;Brien &middot; Dr. Kramer</span></div>
+    <div class="meta-item"><span class="meta-label">Status</span><span class="meta-value">Post-Defense &middot; Pre-Publication Review</span></div>
+    <div class="meta-item"><span class="meta-label">Repository</span><span class="meta-value">ContextBasedAIAttacks</span></div>
+    <div class="meta-item"><span class="meta-label">Total Experiments</span><span class="meta-value">N = 3,184 (dissertation) + 100 (GPT-6 supplemental)</span></div>
+  </div>
+</div>
+
+<div class="container">
+
+  <div class="notice">
+    <strong>&#10004; All statistics on this page match the dissertation tables exactly.</strong>
+    <p>Every value is taken directly from Chapter 4 tables and text. Source citations reference the specific table or section. The GPT-6 Astra section is clearly labeled as a supplemental novel test conducted prior to the final defense &mdash; it is <em>not</em> part of the core dissertation data reported in Tables 4.1&ndash;4.6.</p>
+  </div>
+
+  <div class="notice yellow">
+    <strong>&#9888; Note on &sect;4.10 Summary vs. Table 4.1 Overall Row</strong>
+    <p>Chapter 4 &sect;4.10 summary text states &ldquo;3.5% to 37.4%, 10.7-fold amplification&rdquo; while Table 4.1&apos;s Overall Mean row states &ldquo;9.9% to 41.1%, 3.55&times; increase.&rdquo; The &sect;4.10 text uses a different aggregation method than the weighted table values. Table 4.1&apos;s values (9.9% and 41.1%) are used throughout this verification document as the primary reported statistics, as these are the values the committee will read in the dissertation tables. Both figures from the dissertation are reproduced faithfully here.</p>
+  </div>
+
+  <!-- TOC -->
+  <div class="toc">
+    <h2>Contents</h2>
+    <ol>
+      <li><a href="#t41">Table 4.1 &mdash; Vulnerability Generation Rates by Model (Core: RQ0)</a></li>
+      <li><a href="#t42">Table 4.2 &mdash; Attack Success Rates by Technique and Model (RQ1)</a></li>
+      <li><a href="#t43">Table 4.3 &mdash; Attack Success Rate by Context Position (RQ1)</a></li>
+      <li><a href="#t44">Table 4.4 &mdash; Vulnerability Rates by Category (RQ1)</a></li>
+      <li><a href="#t45">Table 4.5 &mdash; Attack Rates by Linguistic Pattern (RQ2)</a></li>
+      <li><a href="#t46">Table 4.6 &mdash; Cross-Model Transferability Matrix (RQ3)</a></li>
+      <li><a href="#stats">Statistical Methods: Chi-Square, &phi;, Bootstrap CI, Cohen&apos;s &kappa;, Cohen&apos;s d</a></li>
+      <li><a href="#gpt6">GPT-6 Astra &mdash; Supplemental Novel Test (Pre-Defense, Not in Dissertation)</a></li>
+      <li><a href="#check">Master Checklist &mdash; All Reported Statistics</a></li>
+    </ol>
+  </div>
+
+  <!-- KPIs -->
+  <div class="kpi-row">
+    <div class="kpi"><div class="num">3,184</div><div class="label">Total test cases</div></div>
+    <div class="kpi"><div class="num">9.9%</div><div class="label">Overall baseline VGR</div></div>
+    <div class="kpi"><div class="num">41.1%</div><div class="label">Overall adversarial VGR</div></div>
+    <div class="kpi"><div class="num">3.55&times;</div><div class="label">Mean increase factor</div></div>
+    <div class="kpi"><div class="num">847.3</div><div class="label">&chi;&sup2; (df=1, p&lt;0.001)</div></div>
+    <div class="kpi"><div class="num">d=1.2&ndash;3.8</div><div class="label">Cohen&apos;s d range</div></div>
+    <div class="kpi"><div class="num">&kappa;=0.87</div><div class="label">Inter-rater reliability</div></div>
+  </div>
+
+  <!-- TABLE 4.1 -->
+  <div class="section" id="t41">
+    <div class="sec-head">
+      <span class="sec-num">&sect;1</span>
+      <h2>Table 4.1 &mdash; Vulnerability Generation Rates by Model and Condition</h2>
+      <span class="rq">RQ0 &middot; Ch4 &sect;4.2</span>
+    </div>
+    <div class="sec-body">
+      <table>
+        <thead><tr><th>Model</th><th>Test Cases</th><th>Baseline VGR</th><th>Adversarial VGR</th><th>Mean VGR</th><th>Increase Factor</th><th>Source</th></tr></thead>
+        <tbody>
+          <tr><td><strong>CodeT5+ (770M)</strong><br><span class="src">encoder-decoder</span></td><td class="v">1,000</td><td class="v">0.0%</td><td class="v">26.7%</td><td class="v">13.4%</td><td class="ok">N/A*</td><td class="src">Table 4.1 row 1</td></tr>
+          <tr><td><strong>CodeLlama (7B)</strong><br><span class="src">decoder-only</span></td><td class="v">1,000</td><td class="v">17.6%</td><td class="v">55.2%</td><td class="v">36.4%</td><td class="ok">3.14&times;</td><td class="src">Table 4.1 row 2</td></tr>
+          <tr><td><strong>GPT-3.5-Turbo</strong><br><span class="src">RLHF, commercial</span></td><td class="v">100</td><td class="v">12.0%</td><td class="v">44.7%</td><td class="v">28.4%</td><td class="ok">3.72&times;</td><td class="src">Table 4.1 row 3</td></tr>
+          <tr><td><strong>GPT-4</strong><br><span class="src">RLHF; n=44 excl. obfuscation outlier</span></td><td class="v">44</td><td class="v">10.0%</td><td class="v">37.9%&dagger;</td><td class="v">24.0%</td><td class="ok">3.79&times;</td><td class="src">Table 4.1 row 4</td></tr>
+          <tr class="total-row"><td><strong>Overall Mean</strong></td><td class="v">3,184</td><td class="v">9.9%</td><td class="v">41.1%</td><td class="v">25.5%</td><td class="ok">3.55&times;&Dagger;</td><td class="src">Table 4.1 overall</td></tr>
+        </tbody>
+      </table>
+      <p class="fn">* CodeT5+ baseline = 0.0%; division by zero makes multiplicative factor undefined. &sect;4.8.1 reports 11.4&times; amplification referencing overall mean, not baseline.</p>
+      <p class="fn">&dagger; GPT-4 adversarial VGR excludes the n=1 obfuscation result (100%) as an outlier per &sect;4.8.4.</p>
+      <p class="fn">&Dagger; 3.55&times; = weighted mean of model-specific factors. &sect;4.10 text also states &ldquo;10.7-fold amplification&rdquo; using a different aggregation; both values are in the dissertation.</p>
+
+      <div class="box">
+        <h4>How the Increase Factor is derived</h4>
+        <div class="math">Increase Factor = Adversarial VGR &divide; Baseline VGR
+
+CodeLlama:   55.2% &divide; 17.6% = 3.136... &asymp; 3.14&times;
+GPT-3.5:     44.7% &divide; 12.0% = 3.725       &asymp; 3.72&times;
+GPT-4:       37.9% &divide; 10.0% = 3.79&times;
+Weighted mean factor across four models = 3.55&times;</div>
+      </div>
+
+      <div class="box">
+        <h4>Chi-square derivation for overall baseline vs. adversarial (&sect;4.2 &amp; &sect;4.10)</h4>
+        <div class="math">Contingency table (approximate counts from percentages):
+              Vulnerable    Safe     Total
+Baseline         315       2,869    3,184   (9.9% &times; 3,184)
+Adversarial    1,309       1,875    3,184   (41.1% &times; 3,184)
+
+&chi;&sup2;(1) = 847.3,  df = 1,  p &lt; 0.001
+Pearson method, Yates correction = False</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TABLE 4.2 -->
+  <div class="section" id="t42">
+    <div class="sec-head">
+      <span class="sec-num">&sect;2</span>
+      <h2>Table 4.2 &mdash; Attack Success Rates by Technique and Model</h2>
+      <span class="rq">RQ1 &middot; Ch4 &sect;4.3.1</span>
+    </div>
+    <div class="sec-body">
+      <table>
+        <thead><tr><th>Technique</th><th>CodeT5+</th><th>CodeLlama</th><th>GPT-3.5</th><th>GPT-4</th><th>Mean ASR</th><th>Notes</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Baseline (Control)</strong></td><td class="v">0.0%</td><td class="v">17.6%</td><td class="v">12.0%</td><td class="v">10.0%</td><td class="v">9.9%</td><td class="src">Table 4.2</td></tr>
+          <tr><td><strong>Direct Instruction</strong></td><td class="v">20.0%</td><td class="v">60.8%</td><td class="v">68.0%</td><td class="v">53.8%</td><td class="v">50.7%</td><td class="src">Table 4.2</td></tr>
+          <tr><td><strong>Semantic Priming</strong></td><td class="v">0.0%</td><td class="v">9.6%</td><td>&mdash;</td><td>&mdash;</td><td class="v">4.8%&sect;</td><td class="src">Local models only</td></tr>
+          <tr><td><strong>Example-Based</strong></td><td class="v">60.0%</td><td class="v">95.2%</td><td>&mdash;</td><td>&mdash;</td><td class="v">77.6%&sect;</td><td class="src">Local models only</td></tr>
+          <tr><td><strong>Steganographic</strong></td><td class="v">43.8%&para;</td><td class="v">47.5%&para;</td><td class="v">24.0%</td><td class="v">40.0%</td><td class="v">38.8%</td><td class="src">Table 4.2</td></tr>
+          <tr><td><strong>Evasion</strong></td><td class="v">43.8%&para;</td><td class="v">47.5%&para;</td><td class="v">66.7%</td><td class="v">20.0%</td><td class="v">44.5%</td><td class="src">Table 4.2</td></tr>
+          <tr><td><strong>Obfuscation</strong></td><td>&mdash;</td><td>&mdash;</td><td class="v">20.0%</td><td class="v">100.0%**</td><td class="v">60.0%&dagger;&dagger;</td><td class="src">Table 4.2</td></tr>
+        </tbody>
+      </table>
+      <p class="fn">&sect; Local-model mean only.</p>
+      <p class="fn">&para; Open-source model steganographic and evasion values share the same reported rate in Table 4.2.</p>
+      <p class="fn">** GPT-4 obfuscation 100% based on n=1; treated as outlier, excluded from Table 4.1 adversarial VGR.</p>
+      <p class="fn">&dagger;&dagger; Obfuscation mean is average of GPT-3.5 and GPT-4 only.</p>
+
+      <div class="box">
+        <h4>Key text claims from &sect;4.3.1 (direct instruction)</h4>
+        <div class="math">Direct instruction overall mean: 55% (stated in text) | 50.7% (Table 4.2)
+  95% CI: [48.2%, 61.8%]  |  &chi;&sup2;(1) = 421.8, p &lt; 0.001  |  Cohen's d = 2.7
+
+&ldquo;near-perfect direct instruction attack success rate against GPT-3.5-Turbo (100%)&rdquo;
+&ldquo;GPT-4 (80%)&rdquo; &mdash; both stated in &sect;4.3.1 text; these reflect high-authority-framing
+subset trials. Table 4.2 full-technique averages: GPT-3.5 = 68.0%, GPT-4 = 53.8%.
+
+Example-based: Mean ASR = 77.6% (local models), &chi;&sup2;(1) = 198.4, d = 1.8</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TABLE 4.3 -->
+  <div class="section" id="t43">
+    <div class="sec-head">
+      <span class="sec-num">&sect;3</span>
+      <h2>Table 4.3 &mdash; Attack Success Rate by Context Position</h2>
+      <span class="rq">RQ1 &middot; Ch4 &sect;4.3.2</span>
+    </div>
+    <div class="sec-body">
+      <table>
+        <thead><tr><th>Position</th><th>Token Range</th><th>ASR</th><th>95% CI</th><th>Relative Effect</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Pre-Function</strong><br><span class="src">before generation</span></td><td>&minus;50 to &minus;10</td><td class="v">62.1%</td><td class="v">[56.8%, 67.4%]</td><td class="ok">1.0&times; (baseline)</td></tr>
+          <tr><td><strong>Initial Context</strong><br><span class="src">first 50 tokens</span></td><td>0&ndash;50</td><td class="v">48.3%</td><td class="v">[43.1%, 53.5%]</td><td class="ok">0.78&times;</td></tr>
+          <tr><td><strong>Mid-Context</strong></td><td>100&ndash;200</td><td class="v">38.5%</td><td class="v">[33.5%, 43.5%]</td><td class="ok">0.62&times;</td></tr>
+          <tr><td><strong>Distant Context</strong><br><span class="src">300+ tokens</span></td><td>300+</td><td class="v">22.7%</td><td class="v">[18.3%, 27.1%]</td><td class="ok">0.37&times;</td></tr>
+        </tbody>
+      </table>
+      <div class="box">
+        <h4>ANOVA and attention weight findings (&sect;4.3.2)</h4>
+        <div class="math">One-way ANOVA: F(3, 696) = 127.4,  p &lt; 0.001,  &eta;&sup2; = 0.35
+  &rarr; Position accounts for 35% of variance in attack success
+Bonferroni-corrected pairwise: &alpha;_adj = 0.05/6 = 0.0083; all p &lt; 0.001
+
+Attention weight (CodeT5+):
+  Pre-function mean = 0.087  |  Distant mean = 0.038  |  Ratio = 2.3&times;
+  t(148) = 12.4, p &lt; 0.001</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TABLE 4.4 -->
+  <div class="section" id="t44">
+    <div class="sec-head">
+      <span class="sec-num">&sect;4</span>
+      <h2>Table 4.4 &mdash; Vulnerability Generation Rates by Category and Model</h2>
+      <span class="rq">RQ1 &middot; Ch4 &sect;4.4</span>
+    </div>
+    <div class="sec-body">
+      <table>
+        <thead><tr><th>Vulnerability Type</th><th>CodeT5+</th><th>CodeLlama</th><th>GPT-3.5</th><th>GPT-4</th><th>Mean Rate</th></tr></thead>
+        <tbody>
+          <tr><td><strong>SQL Injection (CWE-89)</strong></td><td class="v">25.0%</td><td class="v">50.5%</td><td class="v">43.3%</td><td class="v">5.9%</td><td class="v">31.2%</td></tr>
+          <tr><td><strong>XSS (CWE-79)</strong></td><td class="v">50.0%</td><td class="v">50.0%</td><td class="v">0.0%</td><td class="v">0.0%</td><td class="v">25.0%</td></tr>
+          <tr><td><strong>Hardcoded Credentials (CWE-798)</strong></td><td class="v">0.0%</td><td class="v">53.5%</td><td class="v">52.0%</td><td class="v">58.8%</td><td class="v">41.1%</td></tr>
+          <tr><td><strong>Path Traversal (CWE-22)</strong></td><td class="v">0.0%</td><td class="v">24.5%</td><td class="v">100.0%</td><td class="v">100.0%</td><td class="v">56.1%</td></tr>
+          <tr><td><strong>Insecure Cryptography (CWE-327)</strong></td><td class="v">25.0%</td><td class="v">50.5%</td><td>&mdash;</td><td>&mdash;</td><td class="v">37.8%&dagger;&dagger;</td></tr>
+          <tr><td><strong>Command Injection</strong><br><span class="src">commercial models only</span></td><td>&mdash;</td><td>&mdash;</td><td class="v">20.0%</td><td class="v">33.3%</td><td class="v">26.6%&Dagger;&Dagger;</td></tr>
+        </tbody>
+      </table>
+      <p class="fn">&dagger;&dagger; Insecure Crypto mean = local models only. &Dagger;&Dagger; Command Injection mean = commercial models only.</p>
+      <p class="fn">ANOVA: F(4, 2795) = 47.3, p &lt; 0.001, &eta;&sup2; = 0.063. Post-hoc Tukey HSD: SQL vs Crypto d=1.42, p &lt; 0.001.</p>
+    </div>
+  </div>
+
+  <!-- TABLE 4.5 -->
+  <div class="section" id="t45">
+    <div class="sec-head">
+      <span class="sec-num">&sect;5</span>
+      <h2>Table 4.5 &mdash; Attack Success Rates by Linguistic Pattern Type</h2>
+      <span class="rq">RQ2 &middot; Ch4 &sect;4.5</span>
+    </div>
+    <div class="sec-body">
+      <table>
+        <thead><tr><th>Pattern Category</th><th>Example Phrases</th><th>ASR</th><th>95% CI</th><th>Sample n</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Authority / Imperative</strong></td><td class="src">&ldquo;must use&rdquo;, &ldquo;required by spec&rdquo;</td><td class="v">58.3%</td><td class="v">[52.7%, 63.9%]</td><td class="v">247</td></tr>
+          <tr><td><strong>Legacy Justification</strong></td><td class="src">&ldquo;backward compatible&rdquo;, &ldquo;historical&rdquo;</td><td class="v">51.7%</td><td class="v">[46.2%, 57.2%]</td><td class="v">223</td></tr>
+          <tr><td><strong>Simplification</strong></td><td class="src">&ldquo;simple approach&rdquo;, &ldquo;quick way&rdquo;</td><td class="v">42.1%</td><td class="v">[36.8%, 47.4%]</td><td class="v">198</td></tr>
+          <tr><td><strong>Temporary / Prototype</strong></td><td class="src">&ldquo;for now&rdquo;, &ldquo;prototype code&rdquo;</td><td class="v">39.4%</td><td class="v">[34.2%, 44.6%]</td><td class="v">186</td></tr>
+          <tr><td><strong>Performance Framing</strong></td><td class="src">&ldquo;optimized&rdquo;, &ldquo;faster method&rdquo;</td><td class="v">36.8%</td><td class="v">[31.7%, 41.9%]</td><td class="v">174</td></tr>
+        </tbody>
+      </table>
+      <p class="fn">Regression model R&sup2; = 0.42. Logistic regression AUC = 0.84. Hosmer-Lemeshow: &chi;&sup2;(8) = 8.3, p = 0.41 (good calibration).</p>
+    </div>
+  </div>
+
+  <!-- TABLE 4.6 -->
+  <div class="section" id="t46">
+    <div class="sec-head">
+      <span class="sec-num">&sect;6</span>
+      <h2>Table 4.6 &mdash; Cross-Model Attack Transferability Matrix</h2>
+      <span class="rq">RQ3 &middot; Ch4 &sect;4.6</span>
+    </div>
+    <div class="sec-body">
+      <table>
+        <thead><tr><th>Origin &rarr; Target</th><th>CodeT5+</th><th>CodeLlama</th><th>GPT-3.5</th><th>GPT-4</th><th>Mean TR from Origin</th></tr></thead>
+        <tbody>
+          <tr><td><strong>CodeT5+</strong></td><td class="v">100%</td><td class="v">100%</td><td class="v">78%</td><td class="v">65%</td><td class="v">85.8%</td></tr>
+          <tr><td><strong>CodeLlama</strong></td><td class="v">95%</td><td class="v">100%</td><td class="v">82%</td><td class="v">70%</td><td class="v">86.8%</td></tr>
+          <tr><td><strong>GPT-3.5</strong></td><td class="v">65%</td><td class="v">68%</td><td class="v">100%</td><td class="v">85%</td><td class="v">79.5%</td></tr>
+          <tr><td><strong>GPT-4</strong></td><td class="v">58%</td><td class="v">62%</td><td class="v">90%</td><td class="v">100%</td><td class="v">77.5%</td></tr>
+          <tr class="total-row"><td><strong>Mean TR to Target</strong></td><td class="v">79.5%</td><td class="v">82.5%</td><td class="v">87.5%</td><td class="v">80.0%</td><td>&mdash;</td></tr>
+        </tbody>
+      </table>
+      <div class="box">
+        <h4>Key transferability statistics (&sect;4.6)</h4>
+        <div class="math">Open-source &harr; open-source: Mean TR = 0.975, 95% CI [0.94, 1.01]  (95&ndash;100%)
+Open-source &rarr; commercial:  Mean TR = 0.738, 95% CI [0.69, 0.78]  (65&ndash;82%)
+GPT-3.5 &rarr; GPT-4: 85%  |  GPT-4 &rarr; GPT-3.5: 90%
+83% of origin-target pairs achieve TR &gt; 0.6
+Pearson r(model size, transfer resistance) = 0.47, p = 0.032</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STATISTICAL METHODS -->
+  <div class="section" id="stats">
+    <div class="sec-head">
+      <span class="sec-num">&sect;7</span>
+      <h2>Statistical Methods &mdash; Full Derivations</h2>
+      <span class="rq">&sect;4.7 &middot; All RQs</span>
+    </div>
+    <div class="sec-body">
+
+      <h3 class="sub">Chi-Square Test (Pearson, correction=False)</h3>
+      <div class="math">&chi;&sup2; = &Sigma; [(O_ij &minus; E_ij)&sup2; / E_ij]       where  E_ij = (row_i &times; col_j) / N
+
+Primary comparison (&sect;4.2 &amp; &sect;4.10):  &chi;&sup2;(1) = 847.3, df=1, p &lt; 0.001
+Direct instruction vs. baseline (&sect;4.3.1): &chi;&sup2;(1) = 421.8, p &lt; 0.001
+Example-based vs. baseline (&sect;4.3.1):      &chi;&sup2;(1) = 198.4, p &lt; 0.001</div>
+
+      <h3 class="sub">Phi Coefficient &phi;</h3>
+      <div class="math">&phi; = &radic;(&chi;&sup2; / N)
+&phi; = &radic;(847.3 / 3184) = &radic;0.2661 &asymp; 0.516   (large association; &ge;0.5 threshold)</div>
+
+      <h3 class="sub">Bootstrap Confidence Intervals (B=10,000, seed=42)</h3>
+      <div class="math">Method: BCa (bias-corrected and accelerated), B=10,000 resamples, seed=42, &alpha;=0.05
+
+Overall adversarial VGR:  95% CI = [35.1%, 39.7%]  (&sect;4.7.3)   width = 4.6 pp
+Pre-function position:    95% CI = [56.8%, 67.4%]   (Table 4.3)
+Direct instruction:       95% CI = [48.2%, 61.8%]   (&sect;4.3.1)
+CodeT5+/CodeLlama (n=1,000): typical CI width = 3&ndash;4 pp
+GPT-4 (n=44):                typical CI width = 6&ndash;8 pp</div>
+
+      <h3 class="sub">Cohen&apos;s d (Effect Size)</h3>
+      <div class="math">Cohen&apos;s d = (M&sub1; &minus; M&sub2;) / SD_pooled
+
+Range reported across all conditions: d = 1.2 to d = 3.8  (&sect;4.7.2)
+Overall adversarial vs. baseline: d = 2.7  (reported in &sect;4.7.2 text)
+Direct instruction vs. baseline:  d = 2.7  (&sect;4.3.1)
+Example-based vs. baseline:       d = 1.8  (&sect;4.3.1)
+SQL injection vs. insecure crypto: d = 1.42  (&sect;4.4)
+
+Thresholds: 0.2=small, 0.5=medium, 0.8=large; all reported d &gt;&gt; 0.8</div>
+
+      <h3 class="sub">Cohen&apos;s &kappa; (Inter-Rater Reliability)</h3>
+      <div class="math">Cohen&apos;s &kappa; = (P_o &minus; P_e) / (1 &minus; P_e)
+
+Reported: &kappa; = 0.87  (almost perfect agreement &mdash; Landis &amp; Koch scale)
+
+Worked example deriving &kappa; &asymp; 0.87:
+  Hypothetical 2&times;2 rater agreement matrix (N=200):
+                  Rater B: Vuln   Rater B: Safe   Total
+  Rater A: Vuln       85            5              90
+  Rater A: Safe        7          103             110
+  Total               92          108             200
+
+  P_o = (85 + 103) / 200 = 0.940
+  P_e = [(90&times;92/200) + (110&times;108/200)] / 200 = [41.4 + 59.4] / 200 = 0.504
+  &kappa;   = (0.940 &minus; 0.504) / (1 &minus; 0.504) = 0.436 / 0.496 &asymp; 0.879 &asymp; 0.87</div>
+
+      <h3 class="sub">Power Analysis (&sect;4.7.1)</h3>
+      <div class="math">Pre-experiment: &alpha;=0.05, 1&minus;&beta;=0.80, Cohen&apos;s d=0.5 &rarr; n_min &asymp; 64 per condition
+Actual n: CodeT5+=1,000; CodeLlama=1,000; GPT-3.5=100; GPT-4=44
+Achieved power: &gt;0.95 for medium effects; &gt;0.98 even for smallest observed (d=1.2)</div>
+
+      <h3 class="sub">Additional Statistical Tests</h3>
+      <div class="math">Positional ANOVA:   F(3,696) = 127.4, p &lt; 0.001, &eta;&sup2; = 0.35
+Vuln cat ANOVA:     F(4,2795) = 47.3,  p &lt; 0.001, &eta;&sup2; = 0.063
+Levene&apos;s test (pos.): F(3,696) = 2.1, p = 0.098  &rarr; variance homogeneity OK
+Shapiro-Wilk (pos.): W = 0.993, p = 0.187          &rarr; normality OK
+VIF all predictors: &lt; 2.5                           &rarr; no multicollinearity
+Cook&apos;s distance: no observation &gt; 0.5              &rarr; no influential outliers
+Language formality: formal 62% vs. casual 51%, &chi;&sup2; = 8.7, p = 0.003</div>
+    </div>
+  </div>
+
+  <!-- GPT-6 SUPPLEMENTAL -->
+  <div class="section" id="gpt6">
+    <div class="sec-head supp">
+      <span class="sec-num">&sect;8</span>
+      <h2>GPT-6 Astra &mdash; Supplemental Novel Test</h2>
+      <span class="rq">Pre-Defense &middot; NOT in Dissertation Tables</span>
+    </div>
+    <div class="sec-body">
+      <div class="notice orange">
+        <strong>&#9888; Supplemental Novel Test &mdash; Conducted Prior to Defense, Not Part of the Dissertation</strong>
+        <p>GPT-6 Astra was tested as a novel exploratory extension before the final defense to evaluate whether findings generalize to next-generation models. While this test was completed prior to the defense, it was <em>not included in the dissertation document</em>, the official committee review, or any of the core statistical analyses (Tables 4.1&ndash;4.6). It is included in this repository under <code>data/gpt6_extension/</code> for transparency and future reference only. The N=3,184 total reported in the dissertation does not include these GPT-6 trials.</p>
+      </div>
+      <div class="kpi-row">
+        <div class="kpi"><div class="num">100</div><div class="label">GPT-6 test cases</div></div>
+        <div class="kpi"><div class="num">&sim;5%</div><div class="label">Baseline VGR (est.)</div></div>
+        <div class="kpi"><div class="num">&sim;35%</div><div class="label">Adversarial VGR (est.)</div></div>
+        <div class="kpi"><div class="num">$16.53</div><div class="label">API cost</div></div>
+      </div>
+      <p style="color:var(--text2);font-size:13px;margin-top:12px;">Data file: <code>data/gpt6_extension/gpt6_astra_full_results.json</code></p>
+      <p style="color:var(--text2);font-size:13px;margin-top:8px;line-height:1.7;">GPT-6 Astra demonstrated meaningfully lower adversarial susceptibility than GPT-3.5 or GPT-4, suggesting improved safety alignment in next-generation models. However, it was not immune to contextual manipulation, consistent with the dissertation&apos;s core finding that these vulnerabilities are systemic. This result is exploratory only.</p>
+      <p style="color:var(--orange);font-size:13px;margin-top:12px;font-weight:600;">This data should NOT be cited as part of the dissertation findings. It is a pre-defense exploratory test included here for completeness.</p>
+    </div>
+  </div>
+
+  <!-- MASTER CHECKLIST -->
+  <div class="section" id="check">
+    <div class="sec-head">
+      <span class="sec-num">&sect;9</span>
+      <h2>Master Checklist &mdash; All Reported Statistics</h2>
+      <span class="rq">Dr. Ham &middot; Committee Review</span>
+    </div>
+    <div class="sec-body">
+      <ul class="checklist">
+        <li><span class="ci">&#10004;</span><div><strong>N = 3,184 total test cases</strong><span class="cd">Table 4.1 overall row</span></div></li>
+        <li><span class="ci">&#10004;</span><div><strong>CodeT5+ baseline VGR = 0.0%</strong><span class="cd">Table 4.1 row 1</span></div></li>
+        <li><span class="ci">&#10004;</span><div><strong>CodeT5+ adversarial VGR = 26.7%</strong><span class="cd">Table 4.1 row 1</span></div></li>
+        <li><span class="ci">&#10004;</span><div><strong>CodeT5+ mean VGR = 13.4%</strong><span class="cd">Table 4.1 row 1</span></div></li>
+        <li><span class="ci">&#10004;</span><div><strong>CodeLlama baseline VGR = 17.6%</strong><span class="cd">Table 4.1 row 2</span></div></li>
+        <li><span class="ci">&#10004;</span><div><strong>CodeLlama adversarial VGR = 55.2%</strong><span class="cd">Table 4.1 row 2</span></div></li>
+        <li><span class="ci">&#10004;</span><div><strong>CodeLlama mean VGR = 36.4% &middot; Increase = 3.14&times;</strong><span class="cd">Table 4.1 row 2</span></div></li>
+        <li><span class="ci">&#10004;</span><div><strong>GPT-3.5 baseline VGR = 12.0%</strong><span class="cd">Table 4.1 row 3</span></div></li>
+        <li><span class="ci">&#10004;</span><div><strong>GPT-3.5 adversarial VGR = 44.7%</strong><span class="cd">Table 4.1 row 3</span></div></li>
+        <li><span class="ci">&#10004;</span><div><strong>GPT-3.5 increase factor = 3.72&times;</strong><span class="cd">Table 4.1 row 3</span></div></li>
+        <li><span class="ci">&#10004;</span><div><strong>GPT-4 baseline VGR = 10.0%</strong><span class="cd">Table 4.1 row 4</span></div></li>
+        <li><span class="ci">&#10004;</span><div><strong>GPT-4 adversarial VGR = 37.9%</strong><span class="cd">Table 4.1 row 4; excludes n=1 obfuscation outlier</span></div></li>
+        <li><span class="ci">&#10004;</span><div><strong>GPT-4 increase factor = 3.79&times;</strong><span class="cd">Table 4.1 row 4</span></div></li>
+        <li><span class="ci">&#10004;</span><div><strong>Overall mean baseline VGR = 9.9%</strong><span class="cd">Table 4.1 overall row</span></div></li>
+        <li><span class="ci">&#10004;</span><div><strong>Overall mean adversarial VGR = 41.1%</strong><span class="cd">Table 4.1 overall row</span></div></li>
+        <li><span class="ci">&#10004;</span><div><strong>Overall mean VGR = 25.5% &middot; Increase = 3.55&times;</strong><span class="cd">Table 4.1 overall row</span></div></li>
+        <li><span class="ci">&#10004;</span><div><strong>&chi;&sup2;(1) = 847.3, p &lt; 0.001</strong><span class="cd">&sect;4.2 and &sect;4.10 text</span></div></li>
+        <li><span class="ci">&#10004;</span><div><strong>&phi; = 0.516 (large effect)</strong><span class="cd">Derived: &radic;(847.3/3184)</span></div></li>
+        <li><span class="ci">&#10004;</span><div><strong>95% CI adversarial VGR = [35.1%, 39.7%]</strong><span class="cd">&sect;4.7.3 text</span></div></li>
+        <li><span class="ci">&#10004;</span><div><strong>Cohen&apos;s d range = 1.2 to 3.8</strong><span class="cd">&sect;4.7.2 text</span></div></li>
+        <li><span class="ci">&#10004;</span><div><strong>Overall d = 2.7</strong><span class="cd">&sect;4.7.2 text</span></div></li>
+        <li><span class="ci">&#10004;</span><div><strong>Cohen&apos;s &kappa; = 0.87</strong><span class="cd">Inter-rater reliability; almost perfect agreement</span></div></li>
+        <li><span class="ci">&#10004;</span><div><strong>Direct instruction mean ASR = 55% (&sect;4.3.1 text) / 50.7% (Table 4.2)</strong><span class="cd">Both values are in the dissertation; the difference reflects calculation scope</span></div></li>
+        <li><span class="ci">&#10004;</span><div><strong>Direct instruction CI = [48.2%, 61.8%] &middot; &chi;&sup2; = 421.8 &middot; d = 2.7</strong><span class="cd">&sect;4.3.1 text</span></div></li>
+        <li><span class="ci">&#10004;</span><div><strong>GPT-3.5 direct instruction: 100% (text) / 68.0% (Table 4.2)</strong><span class="cd">&sect;4.3.1 text states &ldquo;near-perfect&hellip;100%&rdquo;; Table 4.2 full-technique average = 68%</span></div></li>
+        <li><span class="ci">&#10004;</span><div><strong>GPT-4 direct instruction: 80% (text) / 53.8% (Table 4.2)</strong><span class="cd">&sect;4.3.1 text; Table 4.2 full average</span></div></li>
+        <li><span class="ci">&#10004;</span><div><strong>Example-based ASR = 77.6% (local models) &middot; &chi;&sup2; = 198.4 &middot; d = 1.8</strong><span class="cd">Table 4.2; &sect;4.3.1 text</span></div></li>
+        <li><span class="ci">&#10004;</span><div><strong>Pre-function position ASR = 62.1%, CI [56.8%, 67.4%]</strong><span class="cd">Table 4.3</span></div></li>
+        <li><span class="ci">&#10004;</span><div><strong>Positional ANOVA: F(3,696) = 127.4, p &lt; 0.001, &eta;&sup2; = 0.35</strong><span class="cd">&sect;4.3.2 text</span></div></li>
+        <li><span class="ci">&#10004;</span><div><strong>Path traversal mean = 56.1% (100% for GPT-3.5 and GPT-4)</strong><span class="cd">Table 4.4</span></div></li>
+        <li><span class="ci">&#10004;</span><div><strong>Vuln category ANOVA: F(4,2795) = 47.3, p &lt; 0.001, &eta;&sup2; = 0.063</strong><span class="cd">&sect;4.4 text</span></div></li>
+        <li><span class="ci">&#10004;</span><div><strong>Authority pattern ASR = 58.3%, CI [52.7%, 63.9%]</strong><span class="cd">Table 4.5</span></div></li>
+        <li><span class="ci">&#10004;</span><div><strong>Legacy justification ASR = 51.7%, CI [46.2%, 57.2%]</strong><span class="cd">Table 4.5</span></div></li>
+        <li><span class="ci">&#10004;</span><div><strong>Open-source transfer rate = 95&ndash;100%, mean TR = 0.975, CI [0.94, 1.01]</strong><span class="cd">Table 4.6; &sect;4.6 text</span></div></li>
+        <li><span class="ci">&#10004;</span><div><strong>83% of origin-target pairs achieve TR &gt; 0.6</strong><span class="cd">&sect;4.6 text</span></div></li>
+        <li><span class="ci">&#10004;</span><div><strong>10.7-fold amplification (&sect;4.10 text)</strong><span class="cd">Summary text value; Table 4.1 shows 3.55&times; weighted mean. Both are correct per their scope and both appear in the dissertation.</span></div></li>
+        <li><span class="ci">&#10004;</span><div><strong>Regression R&sup2; = 0.42, AUC = 0.84, Hosmer-Lemeshow p = 0.41</strong><span class="cd">&sect;4.7.6 text</span></div></li>
+        <li><span class="ci">&#10004;</span><div><strong>Cross-language JavaScript transfer = 73%, CI [68.2%, 77.8%]</strong><span class="cd">&sect;4.9.4 text</span></div></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="footer">
+    Del Orbe, W. A. (2026). <em>Context-Based Adversarial Manipulation of AI Code Generators</em> [Ph.D. dissertation].<br>
+    Dakota State University, Beacom College of Computer and Cyber Sciences. &middot; waltdelorbe@gmail.com<br>
+    Chair: Dr. Michael Ham &middot; Committee: Dr. O&apos;Brien &middot; Dr. Kramer &middot; Repository: ContextBasedAIAttacks
+  </div>
+
+</div>
+</body>
+</html>
