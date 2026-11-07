@@ -243,13 +243,12 @@
 
 ---
 
-## Notes for Dissertation Write-Up
+## Notes 
 
-1. **Do not cite the Week 6-8 unvalidated draft numbers** — they were produced by a separate AI tool and contained significant inaccuracies (wrong models, wrong success rates). Use only the numbers in this document.
-2. **The Week 3-5 CodeT5+ hardcoded credentials semantic/example cells were confirmed false positives** — corrected values are 0/50 (0%) for both semantic and example attack types. CodeT5+ consistently generates secure env-var/dotenv patterns for this vulnerability class under indirect framing, regardless of attack technique. Use 0% in all dissertation tables for these cells.
-3. **"Task disengagement" is a distinct failure mode from "genuine resistance"** — CodeT5+ not generating SQL code at all under an SQL injection prompt is not evidence of security robustness; the distinction is worth a paragraph in your discussion/limitations section.
-4. **Baseline insecurity (CodeLlama, hardcoded credentials 62%, path traversal 22%)** reframes the research question from "attacks introduce vulnerabilities" to "attacks amplify pre-existing insecure tendencies" — a stronger and more nuanced dissertation finding.
-5. **The example-based attack blind spot in the prompt-level detector** is a key bridge between your attack and defense chapters — the most effective attack is also the one the first defense layer cannot see, which motivates the need for multi-layer defense.
+1. **The Week 3-5 CodeT5+ hardcoded credentials semantic/example cells were confirmed false positives** — corrected values are 0/50 (0%) for both semantic and example attack types. CodeT5+ consistently generates secure env-var/dotenv patterns for this vulnerability class under indirect framing, regardless of attack technique. Use 0% in all dissertation tables for these cells.
+2. **"Task disengagement" is a distinct failure mode from "genuine resistance"** — CodeT5+ not generating SQL code at all under an SQL injection prompt is not evidence of security robustness; the distinction is worth a paragraph in your discussion/limitations section.
+3. **Baseline insecurity (CodeLlama, hardcoded credentials 62%, path traversal 22%)** reframes the research question from "attacks introduce vulnerabilities" to "attacks amplify pre-existing insecure tendencies" — a stronger and more nuanced dissertation finding.
+4. **The example-based attack blind spot in the prompt-level detector** is a key bridge between your attack and defense chapters — the most effective attack is also the one the first defense layer cannot see, which motivates the need for multi-layer defense.
 
 ---
 
