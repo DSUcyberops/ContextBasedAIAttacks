@@ -147,7 +147,7 @@ python scripts/experiment_scripts/phase4_transferability.py
 
 ## Vulnerability Detection
 
-Each generated code sample was scored by two independent human raters using this rubric:
+Each generated code sample was scored by a human rater using this rubric:
 
 | Score | Meaning |
 |---|---|
