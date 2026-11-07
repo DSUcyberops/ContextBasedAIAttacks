@@ -237,7 +237,7 @@ The key fact is that **the CI still excludes 0%**, confirming statistical signif
 
 ## Step 5 — Cohen's Kappa (Inter-Rater Reliability)
 
-Tests whether the two human raters agreed beyond what chance alone would predict.
+Tests whether the human rater agreed beyond what chance alone would predict.
 
 ```python
 # Example calculation using the dissertation's reported values
