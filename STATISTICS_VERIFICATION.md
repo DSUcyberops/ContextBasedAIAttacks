@@ -9,7 +9,7 @@
 | **Institution** | Dakota State University, Beacom College of Computer and Cyber Sciences |
 | **Status** | Post-Defense · Pre-Publication Review |
 
-> **Purpose:** Every statistic reported in Chapter 4 is listed here with its source table and verification status. The committee can cross-reference each value against the dissertation and re-run `scripts/verify_statistics.py` to confirm computationally.
+> **Purpose:** Every statistic reported in Chapter 4 is listed here with its source table and verification status. Anyone can cross-reference each value against the dissertation and re-run `scripts/verify_statistics.py` to confirm computationally.
 
 ---
 
