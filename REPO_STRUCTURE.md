@@ -18,9 +18,9 @@ ContextBasedAIAttacks/
 ├── requirements.txt                   ← Python dependencies (pip install -r)
 │
 ├── ── VERIFICATION PAGES ──
-├── final_statistics_verification.html ← All Table 4.1–4.6 numbers, checklist-style
-├── math_derivations.html              ← Step-by-step math: how every number was derived
-├── statistical_verification.html      ← Script output rendered as HTML
+├── STATISTICS_VERIFICATION.md         ← All Table 4.1–4.6 numbers, committee checklist
+├── MATH_DERIVATIONS.md                ← Step-by-step math: how every number was derived
+├── statistical_verification.html      ← Script output rendered as HTML (legacy)
 │
 ├── ── EXPERIMENT DATA ──
 ├── data/
@@ -199,13 +199,13 @@ Cohen's κ = 0.87  (almost perfect)
 
 ## 6. How to Read the Verification Pages
 
-Open these HTML files in any browser — no server needed, no internet required:
+The two primary verification pages render natively on GitHub — no browser download needed:
 
 | File | Purpose |
 |---|---|
-| `final_statistics_verification.html` | All Table 4.1–4.6 values with committee checklist |
-| `math_derivations.html` | Step-by-step math: how every number was derived from raw counts |
-| `statistical_verification.html` | Script-generated output summary |
+| `STATISTICS_VERIFICATION.md` | All Table 4.1–4.6 values with committee checklist — **start here** |
+| `MATH_DERIVATIONS.md` | Step-by-step math: how every number was derived from raw counts |
+| `statistical_verification.html` | Script-generated output summary (open locally in browser) |
 
 ---
 
