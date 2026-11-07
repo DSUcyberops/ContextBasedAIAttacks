@@ -52,7 +52,9 @@ GPT-6 Astra was tested as a **supplemental novel test** prior to the final defen
 ContextBasedAIAttacks/
 ├── STATISTICS_VERIFICATION.md           ← Committee verification: all Tables 4.1–4.6
 ├── MATH_DERIVATIONS.md                  ← Step-by-step math: how every number was derived
-├── REPO_STRUCTURE.md                    ← Full structure + replication guide
+├── HOW_TO_VERIFY.md                     ← Hands-on guide: calculate every stat yourself
+├── REPLICATION_GUIDE.md                 ← Re-run experiments from scratch
+├── REPO_STRUCTURE.md                    ← Full directory structure + data file map
 ├── README.md                             ← This file
 ├── SETUP.md                              ← Python setup + verification instructions
 ├── requirements.txt                      ← numpy 2.0.2 · scipy 1.14.1
@@ -123,12 +125,16 @@ ContextBasedAIAttacks/
 
 2. **Browse [`MATH_DERIVATIONS.md`](MATH_DERIVATIONS.md)** — step-by-step derivations for every statistic.
 
-3. **Or run the Python verification script:**
+3. **Walk through [`HOW_TO_VERIFY.md`](HOW_TO_VERIFY.md)** — hands-on Python code to calculate every stat yourself (VGR, chi-square, BCa bootstrap, Cohen's κ, ANOVA).
+
+4. **Or run the Python verification script:**
    ```bash
    python3 -m venv venv && source venv/bin/activate
    pip install -r requirements.txt
    python scripts/verify_statistics.py
    ```
+
+5. **To re-run experiments from scratch:** see [`REPLICATION_GUIDE.md`](REPLICATION_GUIDE.md).
 
 See `SETUP.md` for full instructions including Windows setup.
 
