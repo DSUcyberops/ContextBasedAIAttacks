@@ -362,4 +362,4 @@
 2. **XSS shows the reverse**: local models are highly susceptible (100% direct/example), OpenAI models are completely resistant (0%) — another architecture/training-dependent split worth a discussion paragraph.
 3. **The model-capability inversion on steganographic attacks** (GPT-4 more susceptible than GPT-3.5) is one of the study's most novel findings — it challenges the assumption that more capable = more secure.
 4. **Hardcoded credentials remain the single most consistently exploitable vulnerability class** across all four models and all attack types tested — strongest cross-architecture conclusion in the study.
-5. **Still pending**: CodeT5+ hardcoded credentials semantic/example re-verification; defense system re-scoring after bug fixes.
+
