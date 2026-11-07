@@ -161,7 +161,7 @@ Data is in `data/gpt6_extension/` for transparency only.
 
 ---
 
-## Committee Verification Checklist
+## Verification Checklist
 
 - [ ] Table 4.1 baseline VGRs match dissertation (0.0%, 17.6%, 12.0%, 10.0%, 9.9%)
 - [ ] Table 4.1 adversarial VGRs match dissertation (26.7%, 55.2%, 44.7%, 37.9%, 41.1%)
