@@ -50,11 +50,13 @@ GPT-6 Astra was tested as a **supplemental novel test** prior to the final defen
 
 ```
 ContextBasedAIAttacks/
-├── final_statistics_verification.html   ← Open in browser — committee verification page
-├── statistical_verification.html        ← Chapter 4 tables + math derivations
+├── STATISTICS_VERIFICATION.md           ← Committee verification: all Tables 4.1–4.6
+├── MATH_DERIVATIONS.md                  ← Step-by-step math: how every number was derived
+├── REPO_STRUCTURE.md                    ← Full structure + replication guide
 ├── README.md                             ← This file
 ├── SETUP.md                              ← Python setup + verification instructions
 ├── requirements.txt                      ← numpy 2.0.2 · scipy 1.14.1
+├── statistical_verification.html        ← Script output (open locally in browser)
 │
 ├── data/                                 ← DISSERTATION data files (N=3,184)
 │   ├── pilot_experiment_results_codet5_codellama.json
@@ -116,10 +118,12 @@ ContextBasedAIAttacks/
 
 ## Quick Start — Verification
 
-1. **Open `final_statistics_verification.html`** in any browser — no server required.  
-   This page contains every dissertation statistic with source citations and math derivations.
+1. **Browse [`STATISTICS_VERIFICATION.md`](STATISTICS_VERIFICATION.md)** — renders natively on GitHub.  
+   Contains all Tables 4.1–4.6 with committee checklist.
 
-2. **Or run the Python verification script:**
+2. **Browse [`MATH_DERIVATIONS.md`](MATH_DERIVATIONS.md)** — step-by-step derivations for every statistic.
+
+3. **Or run the Python verification script:**
    ```bash
    python3 -m venv venv && source venv/bin/activate
    pip install -r requirements.txt
