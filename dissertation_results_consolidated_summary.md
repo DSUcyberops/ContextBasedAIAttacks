@@ -356,7 +356,7 @@
 | XSS | High local (100% direct/example) | **Immune (0% all conditions)** | Architecture-dependent |
 | Command Injection | Not tested (local) | Moderate (23.1%) | Moderate |
 
-## Dissertation Write-Up Notes (Updated)
+## Notes
 
 1. **Path traversal shows a striking architecture split**: 0% success under most conditions for local models, 100% for both OpenAI models — this is a key comparative finding for your discussion section. Likely explanation: local model prompts were framed as Python file operations while OpenAI prompts tested different code patterns, or the detector logic differs; worth flagging explicitly.
 2. **XSS shows the reverse**: local models are highly susceptible (100% direct/example), OpenAI models are completely resistant (0%) — another architecture/training-dependent split worth a discussion paragraph.
